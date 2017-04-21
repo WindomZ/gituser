@@ -13,9 +13,15 @@ func main() {
 	// gituser add [options] <user> <name> <email>
 	commander.Program.
 		Command("add <user> <name> <email>").
-		Description("set local git user configuration from <user>").
+		Description("add user configuration").
 		Option("--private-github", "private email address for GitHub").
 		Action(gituser.AddAction)
+
+	// gituser list
+	commander.Program.
+		Command("list").
+		Description("list user configuration").
+		Action(gituser.ListAction)
 
 	// gituser set [options] <user>
 	commander.Program.
@@ -34,7 +40,14 @@ func main() {
 
 	commander.Program.Annotation(
 		"Argument",
-		[]string{commander.FormatDescription("<user>", "the name of the configure user information")},
+		[]string{
+			commander.FormatDescription("<user>",
+				"the name of the configure user information"),
+			commander.FormatDescription("<name>",
+				"the name of the git username"),
+			commander.FormatDescription("<email>",
+				"the address of the git email"),
+		},
 	)
 
 	if _, err := commander.Program.Parse(); err != nil {
