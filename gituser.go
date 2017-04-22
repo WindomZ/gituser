@@ -41,11 +41,11 @@ func main() {
 	commander.Program.Annotation(
 		"Argument",
 		[]string{
-			commander.FormatDescription("<user>",
+			commander.Format.Description("<user>",
 				"the name of the configure user information"),
-			commander.FormatDescription("<name>",
+			commander.Format.Description("<name>",
 				"the name of the git username"),
-			commander.FormatDescription("<email>",
+			commander.Format.Description("<email>",
 				"the address of the git email"),
 		},
 	)
