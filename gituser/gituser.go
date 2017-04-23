@@ -2,7 +2,8 @@ package gituser
 
 import (
 	"encoding/json"
-	"github.com/btcsuite/goleveldb/leveldb/errors"
+	"errors"
+	"io/ioutil"
 	"os"
 	"os/user"
 	"path"
@@ -41,7 +42,7 @@ func writeEmptyConfig() error {
 	if err != nil {
 		return err
 	}
-	fOut.WriteString("[]")
+	fOut.WriteString("")
 	if err := fOut.Close(); err != nil {
 		return err
 	}
@@ -52,29 +53,19 @@ func writeConfig(gitUser *_GitUser) error {
 	if gitUser == nil {
 		return errors.New("gitUser must not be empty!")
 	}
-	var gitUsers []*_GitUser
-	if existFile(_CONFIG_FILE_PATH) {
-		var err error
-		if gitUsers, err = readConfig(); err != nil {
-			return err
-		}
+
+	gitUsers, err := readConfig()
+	if err != nil {
+		return err
 	}
+
 	fOut, err := os.Create(_CONFIG_FILE_PATH)
 	if err != nil {
 		return err
 	}
 	defer fOut.Close()
 
-	for i, u := range gitUsers {
-		if u.user == gitUser.user {
-			gitUsers[i] = gitUser
-			goto Write
-		}
-	}
-	gitUsers = append(gitUsers, gitUser)
-
-Write:
-	data, err := json.Marshal(gitUsers)
+	data, err := json.Marshal(gitUsers.Add(gitUser))
 	if err != nil {
 		return err
 	}
@@ -86,23 +77,18 @@ Write:
 	return nil
 }
 
-func readConfig() ([]*_GitUser, error) {
-	fIn, err := os.Open(_CONFIG_FILE_PATH)
+func readConfig() (*_GitUsers, error) {
+	data, err := ioutil.ReadFile(_CONFIG_FILE_PATH)
 	if err != nil {
 		return nil, err
-	}
-	defer fIn.Close()
-
-	data := make([]byte, 1024)
-	for true {
-		if n, _ := fIn.Read(data); 0 <= n {
-			break
-		}
+	} else if len(data) == 0 {
+		return &_GitUsers{}, nil
 	}
 
-	gitUsers := make([]*_GitUser, 0, 10)
+	var gitUsers _GitUsers
 	if err := json.Unmarshal(data, &gitUsers); err != nil {
 		return nil, err
 	}
-	return gitUsers, nil
+
+	return &gitUsers, nil
 }
