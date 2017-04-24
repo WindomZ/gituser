@@ -7,9 +7,9 @@ import (
 )
 
 var testUser *_GitUser = &_GitUser{
-	user:  "user",
-	name:  "name",
-	email: "email@email.com",
+	User:  "user",
+	Name:  "name",
+	Email: "email@email.com",
 }
 
 func Test_gituser_init(t *testing.T) {
@@ -29,5 +29,6 @@ func Test_gituser_writeConfig(t *testing.T) {
 func Test_gituser_readConfig(t *testing.T) {
 	users, err := readConfig()
 	assert.NoError(t, err)
-	assert.Equal(t, users, []*_GitUser{testUser})
+	assert.Equal(t, users.Size(), 1)
+	assert.Equal(t, users.Get(0), testUser)
 }

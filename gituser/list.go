@@ -1,8 +1,17 @@
 package gituser
 
-import "github.com/WindomZ/go-commander"
+import (
+	"fmt"
+	"github.com/WindomZ/go-commander"
+)
 
 var ListAction = func(c commander.Context) error {
-	println("list...")
+	users, err := readConfig()
+	if err != nil {
+		return err
+	}
+	for _, user := range users.Users {
+		fmt.Println(fmt.Sprintf("%s - %s<%s>", user.User, user.Name, user.Email))
+	}
 	return nil
 }
