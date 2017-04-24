@@ -35,7 +35,7 @@ func main() {
 	commander.Program.
 		Command("unset").
 		Description("unset local git user configuration").
-		Option("-g --global", "unset global git user configuration").
+		//Option("-g --global", "unset global git user configuration").
 		Action(gituser.UnsetAction)
 
 	commander.Program.Annotation(
