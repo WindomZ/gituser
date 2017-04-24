@@ -52,3 +52,14 @@ func (g _GitUsers) Get(i int) *_GitUser {
 func (g _GitUsers) Size() int {
 	return len(g.Users)
 }
+
+func (g _GitUsers) Find(user string) (*_GitUser, bool) {
+	if len(user) != 0 {
+		for _, v := range g.Users {
+			if v.User == user {
+				return v, true
+			}
+		}
+	}
+	return nil, false
+}
