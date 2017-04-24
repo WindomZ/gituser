@@ -1,13 +1,28 @@
 package gituser
 
+import (
+	"errors"
+	"regexp"
+)
+
 type _GitUser struct {
 	User  string `json:"user"`
 	Name  string `json:"name"`
 	Email string `json:"email"`
 }
 
-func (g _GitUser) Valid() bool {
-	return len(g.User) != 0 && len(g.Name) != 0 && len(g.Email) != 0
+func (g _GitUser) Valid() error {
+	if len(g.User) == 0 {
+		return errors.New("Invalid user: " + g.User)
+	}
+	if len(g.Name) == 0 {
+		return errors.New("Invalid name: " + g.Name)
+	}
+	if !regexp.MustCompile(`^[a-z_0-9.-]{1,64}@([a-z0-9-]{1,200}.){1,5}[a-z]{1,6}$`).MatchString(g.Email) {
+		return errors.New("Invalid email: " + g.Email)
+	}
+	return nil
+
 }
 
 type _GitUsers struct {
@@ -15,7 +30,7 @@ type _GitUsers struct {
 }
 
 func (g *_GitUsers) Add(u *_GitUser) *_GitUsers {
-	if u != nil && u.Valid() {
+	if u != nil && u.Valid() == nil {
 		for i, v := range g.Users {
 			if v.User == u.User {
 				g.Users[i] = u
