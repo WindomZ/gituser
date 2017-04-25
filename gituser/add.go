@@ -11,6 +11,9 @@ var AddAction = func(c commander.Context) error {
 		Name:  c.MustString("<name>"),
 		Email: c.MustString("<email>"),
 	}
+	if c.MustBool("--private-github") {
+		user.Email = fmt.Sprintf("%s@users.noreply.github.com", user.Name)
+	}
 	if err := user.Valid(); err != nil {
 		return err
 	} else if err := writeConfig(user); err != nil {
