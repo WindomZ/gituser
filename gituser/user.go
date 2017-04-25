@@ -42,6 +42,22 @@ func (g *_GitUsers) Add(u *_GitUser) *_GitUsers {
 	return g
 }
 
+func (g *_GitUsers) Remove(u string) bool {
+	if len(u) != 0 {
+		for i, v := range g.Users {
+			if v.User == u {
+				if i+1 >= len(g.Users) {
+					g.Users = g.Users[:i]
+				} else {
+					g.Users = append(g.Users[:i], g.Users[i+1:]...)
+				}
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func (g _GitUsers) Get(i int) *_GitUser {
 	if i < 0 || len(g.Users) <= i {
 		return nil
