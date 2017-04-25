@@ -59,13 +59,17 @@ func writeConfig(gitUser *_GitUser) error {
 		return err
 	}
 
+	return writeConfigs(gitUsers.Add(gitUser))
+}
+
+func writeConfigs(gitUsers *_GitUsers) error {
 	fOut, err := os.Create(_CONFIG_FILE_PATH)
 	if err != nil {
 		return err
 	}
 	defer fOut.Close()
 
-	data, err := json.Marshal(gitUsers.Add(gitUser))
+	data, err := json.Marshal(gitUsers)
 	if err != nil {
 		return err
 	}

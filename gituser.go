@@ -17,6 +17,13 @@ func main() {
 		Option("--private-github", "private email address for GitHub").
 		Action(gituser.AddAction)
 
+	// gituser remove <user>
+	commander.Program.
+		Command("remove <user>").
+		Aliases([]string{"rm"}).
+		Description("remove user configuration").
+		Action(gituser.RemoveAction)
+
 	// gituser list
 	commander.Program.
 		Command("list").
