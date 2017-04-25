@@ -5,7 +5,7 @@
 
 Easily switch git users.
 
-![v1.0.0](https://img.shields.io/badge/version-v1.0.0-blue.svg)
+![v1.1.0](https://img.shields.io/badge/version-v1.1.0-blue.svg)
 ![status](https://img.shields.io/badge/status-stable-green.svg)
 
 ## Installation
@@ -22,6 +22,7 @@ $ gituser -h
 
   Usage:
     gituser add <user> <name> <email> [--private-github]
+    gituser (remove|rm) <user>
     gituser list
     gituser set <user> [-g|--global] [--private-github]
     gituser unset
@@ -37,6 +38,7 @@ $ gituser -h
 
   Commands:
     add           add user configuration
+    remove|rm     remove user configuration
     list          list user configuration
     set           set local git user configuration from <user>
     unset         unset local git user configuration
@@ -46,6 +48,21 @@ $ gituser -h
     <name>        the name of the git username
     <email>       the address of the git email
 ```
+
+## Example
+
+```bash
+gituser add windomz WindomZ WindomZ@users.noreply.github.com  # Save 'WindomZ' into configuration file
+gituser add windomz WindomZ '' --private-github               # Ibid, but email is GitHub privacy address
+gituser rm windomz                                            # Delete 'WindomZ' from configuration file
+gituser list                                                  # List all saved users
+gituser set windomz                                           # Set local git user and email
+gituser unset                                                 # Unset local git user and email
+```
+
+## PowerBy
+
+[go-commander](https://github.com/WindomZ/go-commander) - The solution for building command shell programs
 
 ## License
 
