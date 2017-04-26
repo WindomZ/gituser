@@ -5,7 +5,7 @@
 
 Easily switch git users.
 
-![v1.1.0](https://img.shields.io/badge/version-v1.1.0-blue.svg)
+![v1.2.0](https://img.shields.io/badge/version-v1.2.0-blue.svg)
 ![status](https://img.shields.io/badge/status-stable-green.svg)
 
 ## Installation
@@ -23,7 +23,7 @@ $ gituser -h
   Usage:
     gituser add <user> <name> <email> [--private-github]
     gituser (remove|rm) <user>
-    gituser list
+    gituser list|ls
     gituser set <user> [-g|--global] [--private-github]
     gituser unset
     gituser -h|--help
@@ -39,7 +39,7 @@ $ gituser -h
   Commands:
     add           add user configuration
     remove|rm     remove user configuration
-    list          list user configuration
+    list|ls       list user configuration
     set           set local git user configuration from <user>
     unset         unset local git user configuration
 

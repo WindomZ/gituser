@@ -27,6 +27,7 @@ func main() {
 	// gituser list
 	commander.Program.
 		Command("list").
+		Aliases([]string{"ls"}).
 		Description("list user configuration").
 		Action(gituser.ListAction)
 
