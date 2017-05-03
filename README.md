@@ -3,7 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Go Report Card](https://goreportcard.com/badge/github.com/WindomZ/gituser)](https://goreportcard.com/report/github.com/WindomZ/gituser)
 
-Easily switch git users.
+> Easily switch git users.
 
 ![v1.2.0](https://img.shields.io/badge/version-v1.2.0-blue.svg)
 ![status](https://img.shields.io/badge/status-stable-green.svg)
@@ -23,8 +23,8 @@ $ gituser -h
   Usage:
     gituser add <user> <name> <email> [--private-github]
     gituser (remove|rm) <user>
-    gituser list|ls
-    gituser set <user> [-g|--global] [--private-github]
+    gituser (list|ls)
+    gituser set <user> [--private-github]
     gituser unset
     gituser -h|--help
     gituser -v|--version
@@ -32,7 +32,6 @@ $ gituser -h
   Options:
     --private-github
                   private email address for GitHub
-    -g --global   set global git user configuration
     -h --help     output usage information
     -v --version  output the version number
 
@@ -63,6 +62,10 @@ gituser unset                                                 # Unset local git 
 ## PowerBy
 
 [go-commander](https://github.com/WindomZ/go-commander) - The solution for building command shell programs
+
+## Related
+
+[WindomZ/gituser.js](https://github.com/WindomZ/gituser.js) - Written by Node.js
 
 ## License
 

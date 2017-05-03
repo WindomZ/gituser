@@ -8,7 +8,7 @@ import (
 func main() {
 	// gituser
 	commander.Program.
-		Version("v0.0.0")
+		Version("v1.2.0")
 
 	// gituser add [options] <user> <name> <email>
 	commander.Program.
@@ -35,7 +35,6 @@ func main() {
 	commander.Program.
 		Command("set <user>").
 		Description("set local git user configuration from <user>").
-		Option("-g --global", "set global git user configuration").
 		Option("--private-github", "private email address for GitHub").
 		Action(gituser.SetAction)
 
@@ -43,7 +42,6 @@ func main() {
 	commander.Program.
 		Command("unset").
 		Description("unset local git user configuration").
-		//Option("-g --global", "unset global git user configuration").
 		Action(gituser.UnsetAction)
 
 	commander.Program.Annotation(
