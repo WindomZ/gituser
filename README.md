@@ -63,6 +63,10 @@ gituser unset                                                 # Unset local git 
 
 [go-commander](https://github.com/WindomZ/go-commander) - The solution for building command shell programs
 
+## Related
+
+[WindomZ/gituser.js](https://github.com/WindomZ/gituser.js) - Written by Node.js
+
 ## License
 
 The [MIT License](https://github.com/WindomZ/gituser/blob/dev/LICENSE)
