@@ -13,7 +13,7 @@
 To get the package, execute:
 
 ```bash
-go get gopkg.in/WindomZ/gituser.v1
+go get github.com/WindomZ/gituser
 ```
 
 ## Usage
