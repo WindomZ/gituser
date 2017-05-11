@@ -65,7 +65,7 @@ gituser unset                                                 # Unset local git 
 
 ## Related
 
-[WindomZ/gituser.js](https://github.com/WindomZ/gituser.js) - Written by Node.js
+[WindomZ/gituser.js](https://github.com/WindomZ/gituser.js) - Written in Node.js
 
 ## License
 
