@@ -5,7 +5,7 @@
 
 > Easily switch git users.
 
-![v1.2.0](https://img.shields.io/badge/version-v1.2.0-blue.svg)
+![v1.2.1](https://img.shields.io/badge/version-v1.2.1-blue.svg)
 ![status](https://img.shields.io/badge/status-stable-green.svg)
 
 ## Installation
@@ -13,7 +13,7 @@
 To get the package, execute:
 
 ```bash
-go get github.com/WindomZ/gituser
+go get -u github.com/WindomZ/gituser
 ```
 
 ## Usage
