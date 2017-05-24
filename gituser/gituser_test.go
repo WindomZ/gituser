@@ -14,6 +14,7 @@ var testUser *_GitUser = &_GitUser{
 
 func Test_gituser_init(t *testing.T) {
 	_CONFIG_FILE_PATH = path.Join(_CONFIG_DIR, _CONFIG_FILE+".test")
+	initConfig()
 }
 
 func Test_gituser_writeEmptyConfig(t *testing.T) {

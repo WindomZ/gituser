@@ -6,6 +6,8 @@ import (
 )
 
 var SetAction = func(c commander.Context) error {
+	setDebugMode(c.MustBool("--debug"))
+
 	users, err := readConfig()
 	if err != nil {
 		return err

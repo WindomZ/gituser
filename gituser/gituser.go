@@ -10,9 +10,13 @@ import (
 )
 
 var (
-	_CONFIG_DIR       string = ".gituser"
-	_CONFIG_FILE             = "config"
-	_CONFIG_FILE_PATH        = "~/.gituser/config"
+	_CONFIG_DEBUG bool = false
+
+	_CONFIG_DIR        string = ".gituser"
+	_CONFIG_FILE              = "config"
+	_CONFIG_FILE_DEBUG        = "config.debug"
+
+	_CONFIG_FILE_PATH = "~/.gituser/config"
 )
 
 func init() {
@@ -21,20 +25,31 @@ func init() {
 		panic(err)
 	}
 	_CONFIG_DIR = path.Join(home.HomeDir, _CONFIG_DIR)
-	_CONFIG_FILE_PATH = path.Join(_CONFIG_DIR, _CONFIG_FILE)
+
+	initConfig()
+}
+
+func initConfig() {
+	if _CONFIG_DEBUG {
+		_CONFIG_FILE_PATH = path.Join(_CONFIG_DIR, _CONFIG_FILE_DEBUG)
+	} else {
+		_CONFIG_FILE_PATH = path.Join(_CONFIG_DIR, _CONFIG_FILE)
+	}
 
 	if existFile(_CONFIG_FILE_PATH) {
-		return
+	} else if err := writeEmptyConfig(); err != nil {
+		panic(err)
 	}
 
 	if existDir(_CONFIG_DIR) {
 	} else if err := os.MkdirAll(_CONFIG_DIR, os.ModePerm); err != nil {
 		panic(err)
 	}
+}
 
-	if err := writeEmptyConfig(); err != nil {
-		panic(err)
-	}
+func setDebugMode(debug bool) {
+	_CONFIG_DEBUG = debug
+	initConfig()
 }
 
 func writeEmptyConfig() error {
