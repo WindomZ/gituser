@@ -6,6 +6,8 @@ import (
 )
 
 var AddAction = func(c commander.Context) error {
+	setDebugMode(c.MustBool("--debug"))
+
 	user := &_GitUser{
 		User:  c.MustString("<user>"),
 		Name:  c.MustString("<name>"),

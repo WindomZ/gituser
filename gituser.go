@@ -8,13 +8,14 @@ import (
 func main() {
 	// gituser
 	commander.Program.
-		Version("v1.2.0")
+		Version("v1.2.2")
 
 	// gituser add [options] <user> <name> <email>
 	commander.Program.
 		Command("add <user> <name> <email>").
 		Description("add user configuration").
 		Option("--private-github", "private email address for GitHub").
+		Option("--debug", "debug mode, similar to sandbox mode").
 		Action(gituser.AddAction)
 
 	// gituser remove <user>
@@ -22,6 +23,7 @@ func main() {
 		Command("remove <user>").
 		Aliases([]string{"rm"}).
 		Description("remove user configuration").
+		Option("--debug", "debug mode, similar to sandbox mode").
 		Action(gituser.RemoveAction)
 
 	// gituser list
@@ -29,6 +31,7 @@ func main() {
 		Command("list").
 		Aliases([]string{"ls"}).
 		Description("list user configuration").
+		Option("--debug", "debug mode, similar to sandbox mode").
 		Action(gituser.ListAction)
 
 	// gituser set [options] <user>
@@ -36,6 +39,7 @@ func main() {
 		Command("set <user>").
 		Description("set local git user configuration from <user>").
 		Option("--private-github", "private email address for GitHub").
+		Option("--debug", "debug mode, similar to sandbox mode").
 		Action(gituser.SetAction)
 
 	// gituser unset [options]
