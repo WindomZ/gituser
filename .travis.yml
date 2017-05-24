@@ -9,7 +9,8 @@ go:
   - master
 
 before_install:
-  - go get github.com/WindomZ/go-commander
+  - go get -u github.com/WindomZ/go-commander
+  - go get -u github.com/WindomZ/testify/assert
 
 script:
   - go test -v ./...
