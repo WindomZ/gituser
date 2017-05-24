@@ -37,12 +37,15 @@ func initConfig() {
 	}
 
 	if existFile(_CONFIG_FILE_PATH) {
-	} else if err := writeEmptyConfig(); err != nil {
-		panic(err)
+		return
 	}
 
 	if existDir(_CONFIG_DIR) {
 	} else if err := os.MkdirAll(_CONFIG_DIR, os.ModePerm); err != nil {
+		panic(err)
+	}
+
+	if err := writeEmptyConfig(); err != nil {
 		panic(err)
 	}
 }

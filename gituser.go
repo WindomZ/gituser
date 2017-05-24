@@ -8,7 +8,7 @@ import (
 func main() {
 	// gituser
 	commander.Program.
-		Version("v1.2.1")
+		Version("v1.2.2")
 
 	// gituser add [options] <user> <name> <email>
 	commander.Program.

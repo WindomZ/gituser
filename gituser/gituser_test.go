@@ -2,7 +2,6 @@ package gituser
 
 import (
 	"github.com/WindomZ/testify/assert"
-	"path"
 	"testing"
 )
 
@@ -13,8 +12,7 @@ var testUser *_GitUser = &_GitUser{
 }
 
 func Test_gituser_init(t *testing.T) {
-	_CONFIG_FILE_PATH = path.Join(_CONFIG_DIR, _CONFIG_FILE+".test")
-	initConfig()
+	setDebugMode(true)
 }
 
 func Test_gituser_writeEmptyConfig(t *testing.T) {
